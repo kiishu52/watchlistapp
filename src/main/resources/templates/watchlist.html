@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f9fd;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+           .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #d9edf7;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="#">Watchlist App</a>
+    <a href="#">Home</a>
+    <a href="watchlist">Watchlist</a>
+    <a href="Watchlistitemform">Submit an Item</a>
+</div>
+<div class="container">
+    <h1>Watchlist</h1>
+    <table>
+        <thead>
+            <tr> 
+                <th>Movie Name</th>
+                <th>Priority</th>
+                <th>Rating</th>
+                <th>Heroes Name</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="movie :${watchlistrows}">  <!-- similar as for loop --> 
+                <td th:text="${movie.MovieName}"> The Dark Knight</td>
+                <td th:text="${movie.priority}"> High</td>
+                <td th:text="${movie.ratings}"> 9.0</td>
+                <td th:text="${movie.Heroes_name}"> Christian Bale, Heath Ledger</td>
+                 <td> <a href="#"  role="button" th:href="@{/Watchlistitemform(id=${movie.id})}"> Update</a> </td>
+            </tr>
+             
+        </tbody>
+    </table>
+</div>
+<div>
+	Number of movies to Watch: <span th:text="${noofmovies}"></span>
+</div>
+</div>
+
+</body>
+</html>

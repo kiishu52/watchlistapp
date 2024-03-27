@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wallpapercave.com/wp/wp5317294.jpg'); /* Replace 'background-image.jpg' with the path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Lighten the background on hover */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for better readability */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="text"], select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for better readability */
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #008cba;
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005f79;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="#">Watchlist App</a>
+    <a href="#">Home</a>
+    <a href="watchlist">Watchlist</a>
+    <a href="#">Submit an Item</a>
+</div>
+
+<div class="container">
+    <h1>Add Item to Watchlist</h1>
+    <form th:action="@{/Watchlistitemform}" action="#" method="post" th:object="${watchlistItem}">
+        <label for="movieName">Movie Name:</label>
+        <input  th:field="*{movieName}" type="text" id="movieName" name="movieName" required>
+
+        <label for="priority">Priority:</label>
+        <select th:field="*{priority}" id="priority" name="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select> 
+
+        <label for="rating">Rating:</label>
+        <input th:field="*{ratings}" type="number" id="rating" name="rating" step="0.1" min="0" max="10" required>
+
+        <label for="heroesName">Heroes Name:</label>
+        <input  th:field="*{Heroes_name}" type="text" id="heroesName" name="heroesName" required>
+       <input type="hidden" th:field="{id}"/>
+        <input type="submit"  value="Submit">
+    </form>
+</div>
+
+</body>
+</html>
